@@ -3,238 +3,267 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>orchidsinovens</title>
+    <title>Orchids in Ovens | Recipes by Jeslyn Shanaya</title>
     <meta
       name="description"
-      content="orchidsinovens is a personal bakery journal for bakes, recipes, and small oven experiments."
+      content="Orchids in Ovens is a baking journal where classic recipes meet playful reinterpretations and original dessert creations."
     >
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,650;9..144,750&family=Inter:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,650;9..144,750&family=Inter:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     >
     <link rel="stylesheet" href="styles.css">
+
+    <!-- Analytics placeholders: replace these IDs when ready.
+      Google Analytics 4: G-XXXXXXXXXX
+      Meta Pixel: 000000000000000
+      Microsoft Clarity: CLARITY_PROJECT_ID
+    -->
+    <script>
+      window.orchidsAnalytics = {
+        ga4Id: "G-XXXXXXXXXX",
+        metaPixelId: "000000000000000",
+        clarityProjectId: "CLARITY_PROJECT_ID"
+      };
+
+      window.trackOrchidsEvent = function (eventName, eventLabel) {
+        if (window.gtag) {
+          window.gtag("event", eventName, { event_label: eventLabel });
+        }
+
+        if (window.fbq) {
+          window.fbq("trackCustom", eventName, { label: eventLabel });
+        }
+
+        if (window.clarity) {
+          window.clarity("event", eventName + ":" + eventLabel);
+        }
+
+        console.info("Tracked:", eventName, eventLabel);
+      };
+
+      document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll("[data-track]").forEach(function (element) {
+          element.addEventListener("click", function () {
+            window.trackOrchidsEvent(
+              element.dataset.track,
+              element.dataset.trackLabel || element.textContent.trim()
+            );
+          });
+        });
+      });
+    </script>
   </head>
   <body>
     <div class="page-shell">
       <header class="site-header" aria-label="Site header">
-        <a class="brand-mark" href="#top" aria-label="orchidsinovens home">
-          orchidsinovens
+        <a class="brand-mark" href="#home" aria-label="Orchids in Ovens home">
+          Orchids in Ovens
         </a>
         <nav class="nav-links" aria-label="Primary navigation">
-          <a href="#bakes">bakes</a>
-          <a href="#letters">letters</a>
-          <a href="gallery.html">gallery</a>
-          <a href="https://orchidsinovens.substack.com/">substack</a>
+          <a href="#home">Home</a>
+          <a href="#recipes">Recipes</a>
+          <a href="#journal">Journal</a>
+          <a href="#about">About</a>
         </nav>
       </header>
 
-      <main id="top">
+      <main id="home">
         <section class="hero section-band" aria-labelledby="hero-title">
           <div class="hero-copy">
-            <p class="eyebrow">personal bake archive</p>
-            <h1 id="hero-title">orchidsinovens</h1>
+            <p class="eyebrow">Baking journal and recipes</p>
+            <h1 id="hero-title">
+              Thoughtful bakes, nostalgic flavours, and recipes worth keeping.
+            </h1>
             <p class="hero-text">
-              rambles of my bakes and sometimes maybe recipes too
+              Orchids in Ovens is a baking journal where classic recipes meet
+              playful reinterpretations and original dessert creations.
             </p>
             <div class="hero-actions" aria-label="Main actions">
-              <a class="button-primary" href="https://orchidsinovens.substack.com/">
-                read the bakes
+              <a
+                class="button-primary"
+                href="#free-recipe"
+                data-track="email_signup_click"
+                data-track-label="Hero free recipe"
+              >
+                Get a free recipe
               </a>
-              <a class="button-secondary" href="#bakes">peek at the oven</a>
+              <a
+                class="button-secondary"
+                href="#recipes"
+                data-track="browse_recipes_click"
+                data-track-label="Hero browse recipes"
+              >
+                Browse recipes
+              </a>
             </div>
           </div>
 
           <figure class="hero-image">
-            <img
-              src="assets/doll-cake.jpeg"
-              alt="Pink strawberry vanilla cake from orchidsinovens"
-            >
-            <figcaption>pink strawberry vanilla cake</figcaption>
+            <img src="assets/doll-cake.jpeg" alt="Pink doll cake with piped frosting">
+            <figcaption>nostalgic cakes, made personal</figcaption>
           </figure>
         </section>
 
-        <section class="about-grid section-band" aria-labelledby="about-title">
-          <div class="paper-note">
-            <p class="section-kicker">about</p>
-            <h2 id="about-title">cakes, detours, recipes, and soft little thoughts.</h2>
+        <section class="signup-panel section-band" id="free-recipe" aria-labelledby="signup-title">
+          <div>
+            <p class="section-kicker">Free recipe</p>
+            <h2 id="signup-title">Start with something sweet.</h2>
             <p>
-              orchidsinovens is a small baking journal: part portfolio, part recipe
-              box, part place to explain why a cake had to become a doll or why corn
-              belongs inside a cheesecake.
+              Get one free recipe plus occasional baking notes, new launches,
+              and recipe drops.
             </p>
           </div>
-
-          <div class="stamp-panel" aria-label="Orchid in oven motif">
-            <div class="stamp-circle profile-stamp">
-              <img src="assets/profile.png" alt="Naya Substack profile picture">
-            </div>
-            <p>instagram and tiktok at orchidsinovens</p>
-          </div>
+          <form class="signup-form" action="#" method="post">
+            <label class="sr-only" for="email">Email address</label>
+            <input id="email" name="email" type="email" placeholder="Enter your email" required>
+            <button
+              class="button-primary"
+              type="submit"
+              data-track="email_signup_click"
+              data-track-label="Free recipe form"
+            >
+              Send me the recipe
+            </button>
+          </form>
         </section>
 
-        <section class="featured section-band" id="bakes" aria-labelledby="bakes-title">
-          <div class="section-heading">
-            <p class="section-kicker">featured bakes</p>
-            <h2 id="bakes-title">oven favorites</h2>
-          </div>
-
-          <div class="bake-grid">
-            <article class="bake-card">
-              <a href="https://orchidsinovens.substack.com/p/an-entry-on-liminal-spaces-and-corn">
-                <img
-                  src="assets/corn-basque-hero.jpeg"
-                  alt="Corn basque cheesecake with cream topping"
-                >
-                <span class="bake-label">recipe</span>
-                <h3>liminal spaces and corn basque cheesecake</h3>
-                <p>a hefty rant, but scroll to the bottom for a recipe.</p>
-              </a>
-            </article>
-
-            <article class="bake-card feature-card">
-              <a href="https://orchidsinovens.substack.com/p/cakefying-a-doll">
-                <img src="assets/doll-cake.jpeg" alt="Pink strawberry vanilla cake">
-                <span class="bake-label">cake diary</span>
-                <h3>cakefying a doll</h3>
-                <p>the thought process and inspirations behind a darling cake.</p>
-              </a>
-            </article>
-
-            <article class="bake-card">
-              <a href="https://substack.com/@orchidsinovens">
-                <img src="assets/persian-madeleines.jpeg" alt="Persian love cake inspired madeleines">
-                <span class="bake-label">mood</span>
-                <h3>persian love cake madeleines</h3>
-                <p>a quiet, sweet note with rose-cardamom energy.</p>
-              </a>
-            </article>
-          </div>
-        </section>
-
-        <section class="letters section-band" id="letters" aria-labelledby="letters-title">
+        <section class="featured section-band" id="recipes" aria-labelledby="recipes-title">
           <div class="section-heading">
             <div>
-              <p class="section-kicker">bake letters</p>
-              <h2 id="letters-title">posts & notes</h2>
+              <p class="section-kicker">Featured recipes</p>
+              <h2 id="recipes-title">Bake from the archive</h2>
             </div>
-            <a class="button-secondary" href="https://substack.com/@orchidsinovens">
-              open profile
+            <a
+              class="text-link"
+              href="gallery.html"
+              data-track="browse_recipes_click"
+              data-track-label="Gallery archive"
+            >
+              View bake gallery
             </a>
           </div>
 
-          <div class="letter-stack">
-            <article class="letter-embed">
-              <div class="letter-image">
-                <img
-                  src="assets/corn-basque-hero.jpeg"
-                  alt="Top image from the corn basque cheesecake Substack post"
-                >
-              </div>
-              <div class="letter-copy">
-                <p class="letter-meta">Jun 18, 2026 / recipe + ramble</p>
-                <h3>an entry on liminal spaces and corn basque cheesecake</h3>
+          <div class="recipe-grid">
+            <article class="recipe-card">
+              <img src="assets/corn-basque-hero.jpeg" alt="Corn basque cheesecake with corn topping">
+              <div class="recipe-card-body">
+                <span class="recipe-label">Free recipe</span>
+                <h3>Corn Basque Cheesecake</h3>
                 <p>
-                  A warm note on jasuke, being back home, in-between chapters,
-                  and giving corn the dessert spotlight it deserves.
+                  A creamy corn Basque cheesecake inspired by jasuke and being
+                  between places.
                 </p>
-                <a href="https://orchidsinovens.substack.com/p/an-entry-on-liminal-spaces-and-corn">
-                  read full post
+                <a
+                  class="button-secondary"
+                  href="https://orchidsinovens.substack.com/p/an-entry-on-liminal-spaces-and-corn"
+                  data-track="browse_recipes_click"
+                  data-track-label="Corn Basque Cheesecake"
+                >
+                  View recipe
                 </a>
               </div>
             </article>
 
-            <article class="letter-embed reverse">
-              <div class="letter-image">
-                <img
-                  src="assets/cake-detail.jpeg"
-                  alt="Cake detail from the cakefying a doll Substack post"
-                >
-              </div>
-              <div class="letter-copy">
-                <p class="letter-meta">Mar 7, 2026 / cake diary</p>
-                <h3>cakefying a doll</h3>
+            <article class="recipe-card">
+              <img src="assets/persian-madeleines.jpeg" alt="Madeleines on a plate">
+              <div class="recipe-card-body">
+                <span class="recipe-label">Recipe</span>
+                <h3>Persian Love Cake Madeleines</h3>
                 <p>
-                  A soft, romantic cake entry about pink strawberries, music,
-                  doll-like references, and the nonsense that becomes a bake.
+                  Rose-cardamom madeleines inspired by Persian love cake, soft
+                  afternoon light, and floral sweetness.
                 </p>
-                <a href="https://orchidsinovens.substack.com/p/cakefying-a-doll">
-                  read full post
+                <a
+                  class="button-secondary"
+                  href="https://substack.com/@orchidsinovens"
+                  data-track="browse_recipes_click"
+                  data-track-label="Persian Love Cake Madeleines"
+                >
+                  View recipe
                 </a>
               </div>
             </article>
 
-            <article class="letter-embed note-embed">
-              <div class="letter-image">
-                <img
-                  src="assets/cherry-wine-cake.jpeg"
-                  alt="Chocolate cherry wine cake from orchidsinovens profile note"
-                >
-              </div>
-              <div class="letter-copy">
-                <p class="letter-meta">Feb 9, 2026 / profile note</p>
-                <h3>chocolate cherry wine cake</h3>
+            <article class="recipe-card">
+              <img
+                src="assets/brown-butter-chocolate-chip-cookies.jpg"
+                alt="Brown butter chocolate chip cookies"
+              >
+              <div class="recipe-card-body">
+                <span class="recipe-label">Recipe</span>
+                <h3>Brown Butter Chocolate Chip Cookies</h3>
                 <p>
-                  Pinot SMBC, vodka-infused vanilla cherry compote, and a
-                  birthday redemption cake with a little grown-up drama.
+                  Chewy, deeply browned, and made for repeat baking when you
+                  want something familiar but grown up.
                 </p>
-                <a href="https://substack.com/@orchidsinovens">
-                  view profile note
-                </a>
-              </div>
-            </article>
-
-            <article class="letter-embed note-embed reverse">
-              <div class="letter-image">
-                <img
-                  src="assets/matcha-tiramisu.jpeg"
-                  alt="Coconut matcha tiramisu from orchidsinovens profile note"
+                <a
+                  class="button-secondary"
+                  href="#free-recipe"
+                  data-track="browse_recipes_click"
+                  data-track-label="Brown Butter Chocolate Chip Cookies"
                 >
-              </div>
-              <div class="letter-copy">
-                <p class="letter-meta">Jan 30, 2026 / profile note</p>
-                <h3>coconut matcha tiramisu</h3>
-                <p>
-                  Raffaello-inspired, a little grassy, not-so-traditional, and
-                  folded into a ramble about baking as escape.
-                </p>
-                <a href="https://substack.com/@orchidsinovens">
-                  view profile note
-                </a>
-              </div>
-            </article>
-
-            <article class="letter-embed note-embed">
-              <div class="letter-image">
-                <img
-                  src="assets/persian-madeleines.jpeg"
-                  alt="Persian love cake inspired madeleines"
-                >
-              </div>
-              <div class="letter-copy">
-                <p class="letter-meta">Jan 12, 2026 / profile note</p>
-                <h3>persian love cake madeleines</h3>
-                <p>
-                  A quiet, sweet note for Persian love cake inspired madeleines.
-                </p>
-                <a href="https://substack.com/@orchidsinovens">
-                  view profile note
+                  View recipe
                 </a>
               </div>
             </article>
           </div>
         </section>
+
+        <section class="journal-panel section-band" id="journal" aria-labelledby="journal-title">
+          <div class="journal-copy">
+            <p class="section-kicker">Substack</p>
+            <h2 id="journal-title">Read the Journal</h2>
+            <p>
+              Longer reflections on baking, memory, growing up, and everything
+              in between.
+            </p>
+            <a
+              class="button-secondary"
+              href="https://orchidsinovens.substack.com/"
+              data-track="substack_click"
+              data-track-label="Read on Substack"
+            >
+              Read on Substack
+            </a>
+          </div>
+          <img src="assets/corn-basque-recipe.jpeg" alt="Recipe notebook and corn cheesecake">
+        </section>
+
+        <section class="about-section section-band" id="about" aria-labelledby="about-title">
+          <div class="about-card">
+            <p class="section-kicker">About</p>
+            <h2 id="about-title">Hello! I'm Naya.</h2>
+            <p>
+              I started Orchids in Ovens as a place to document the recipes I
+              couldn't stop thinking about - whether they're timeless classics
+              or desserts inspired by flavours I grew up with. I love taking
+              familiar ideas and giving them a new twist, then testing them
+              until they're recipes worth sharing.
+            </p>
+            <p>
+              Here you'll find recipes, baking notes, and the occasional story
+              behind the desserts. I hope they inspire you to bake something
+              delicious, or simply slow down for a moment.
+            </p>
+          </div>
+          <div class="profile-card">
+            <img src="assets/profile.png" alt="Naya profile image">
+            <p>Recipes, baking notes, and soft launches at @orchidsinovens.</p>
+          </div>
+        </section>
+
       </main>
 
       <footer class="site-footer">
-        <div class="brand-mark footer-mark">
-          orchidsinovens
-        </div>
+        <div class="brand-mark footer-mark">Orchids in Ovens</div>
         <div class="footer-links">
-          <a href="gallery.html">gallery</a>
-          <a href="https://orchidsinovens.substack.com/">substack</a>
-          <a href="https://substack.com/@orchidsinovens">profile</a>
+          <a href="#recipes">Recipes</a>
+          <a href="#about">About</a>
+          <a href="https://orchidsinovens.substack.com/">Substack</a>
+          <a href="gallery.html">Gallery</a>
         </div>
       </footer>
     </div>
