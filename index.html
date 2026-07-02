@@ -17,16 +17,33 @@
     <link rel="stylesheet" href="styles.css">
 
     <!-- Analytics placeholders: replace these IDs when ready.
-      Google Analytics 4: G-XXXXXXXXXX
+      Google Analytics 4: G-DDQW597NQC
       Meta Pixel: 000000000000000
       Microsoft Clarity: CLARITY_PROJECT_ID
     -->
     <script>
       window.orchidsAnalytics = {
-        ga4Id: "G-XXXXXXXXXX",
+        ga4Id: "G-DDQW597NQC",
         metaPixelId: "000000000000000",
         clarityProjectId: "CLARITY_PROJECT_ID"
       };
+
+      if (window.orchidsAnalytics.ga4Id) {
+        window.dataLayer = window.dataLayer || [];
+        window.gtag = function () {
+          window.dataLayer.push(arguments);
+        };
+
+        window.gtag("js", new Date());
+        window.gtag("config", window.orchidsAnalytics.ga4Id);
+
+        var gaScript = document.createElement("script");
+        gaScript.async = true;
+        gaScript.src =
+          "https://www.googletagmanager.com/gtag/js?id=" +
+          encodeURIComponent(window.orchidsAnalytics.ga4Id);
+        document.head.appendChild(gaScript);
+      }
 
       window.trackOrchidsEvent = function (eventName, eventLabel) {
         if (window.gtag) {
